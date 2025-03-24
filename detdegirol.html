@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mydicine</title>
+    <link rel="stylesheet" href="asset/style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><img src="asset/img/Logo Med.png" alt="logo" width="100" height="50"/></div>
+            <div class="menu">
+                <ul>   
+                    <li><a href="index.html"> Produk </a></li>
+                    <li><a href="cart.html">
+                        <ion-icon name="cart-outline"></ion-icon></a></li>
+                    <li><button onclick="window.location.href='login.html'">Login</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+
+    <main>
+    <div class="container-detail">
+        <h1 align="center">Detail</h1>
+        <div class="box-detail">
+            <img src="asset/img/detaildegirol.png" width="98%"/>
+        </div>
+      
+        <div class="text-detail">
+            <p class="judul">Degirol Lemon untuk Mengobati Sakit Tenggorokan & Radang (10 Tablet)</h2>
+            <p class="harga">Rp 14.200</p> 
+            <p class="deskripsi"> Deskripsi Produk</p>
+            <p class="desc">Degirol Lemon Tablet merupakan tablet hisap yang mengandung Dequalinium Chloride. 
+                Obat ini digunakan untuk mengobati sakit tenggorokan, radang atau infeksi pada rongga mulut dan tenggorokan, 
+                serta pencegahan flu dan batuk.<br>
+                </p>
+            <br>
+            <input type="number" id="quantity-degirol" value="1" min="1">
+            <button onclick="addToCart('degirol', 14200, document.getElementById('quantity-degirol').value)" class="add-cart" id="add-to-cart" type="button">Masukkan Keranjang</button>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div> 
+    
+<div class="footer-column">
+        <table>
+            <tr>
+                <th>Contact Us</th>
+                <th>Tentang Kami</th>
+                <th>Layanan Kami</th>
+            </tr>
+            <tr>
+                <td>MyDicine Customer Care</td>
+                <td>Tentang Kami</td>
+                <td>Shop</td>
+            </tr>
+            <tr>
+                <td>0210898768</td>
+                <td>Kebijakan Privasi</td>
+                <td>Lokasi Kami</td>
+            </tr>
+            
+            
+            <tr>
+                <td>Email</td>
+                <td>Syarat dan Ketentuan</td>
+                <td><ion-icon name="cart"></ion-icon> <ion-icon name="location"></ion-icon></td>
+            </tr>
+            <tr>
+                <td>mydicinehealth@gmail.com</td>
+            </tr>
+        </table>
+    
+    <div class="social-media">
+        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-icon name="logo-youtube"></ion-icon>
+        <ion-icon name="call"></ion-icon>
+        <ion-icon name="logo-whatsapp"></ion-icon>
+        <ion-icon name="mail"></ion-icon>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fungsi menambahkan produk ke keranjang
+            function addToCart(name, price, quantity) {
+                let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+
+                // Cek apakah produk sudah ada di keranjang
+                let existingProduct = cart.find(item => item.name === name);
+
+                if (existingProduct) {
+                    existingProduct.quantity += parseInt(quantity);
+                } else {
+                    cart.push({
+                        name: name,
+                        price: price,
+                        quantity: parseInt(quantity)
+                    });
+                }
+
+                // Simpan kembali ke sessionStorage
+                sessionStorage.setItem("cart", JSON.stringify(cart));
+
+                // SweetAlert muncul setelah produk berhasil dimasukkan
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: `Produk telah ditambahkan ke keranjang`,
+                    icon: "success",
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#009782",
+                }).then(() => {
+                    // Redirect ke halaman cart setelah OK
+                    window.location.href = "cart.html";
+                });
+            }
+
+            // Event listener untuk tombol tambah ke keranjang
+            document.querySelectorAll(".add-cart").forEach(button => {
+                button.addEventListener("click", function () {
+                    // Ambil data produk dari tombol
+                    let productElement = button.closest(".text-detail");
+                    let productName = productElement.querySelector(".judul").textContent;
+                    let productPrice = parseInt(productElement.querySelector(".harga").textContent.replace("Rp ", "").replace(".", ""));
+                    let quantity = productElement.querySelector("input[type='number']").value;
+
+                    addToCart(productName, productPrice, quantity);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

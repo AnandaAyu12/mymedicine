@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mydicine</title>
+    <link rel="stylesheet" href="asset/style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert -->
+</head>
+<body>
+<main>
+    <div class="kontak">
+        <div class="container-contact">
+        <div class="box-contact">
+        <h1>Login</h1>
+        <div class="container-contact">
+            <div class="box-contact">
+                <div class="isikontak">
+                    <form id="contactForm">
+                        <div class="input-box">
+                            <div class="input-field field">
+                                <input type="text" placeholder="Username" name="Username" id="Username" class="item" autocomplete="off">
+                                <div class="error-txt" style="color: red; display: none;">Username tidak boleh kosong</div>
+                            </div>
+                            <div class="input-field field">
+                                <input type="password" placeholder="Password" name="password" id="password" class="item" autocomplete="off">
+                                <div class="error-txt" style="color: red; display: none;">Password tidak boleh kosong</div>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="button-login">Login</button> <!-- Tidak menggunakan <a> -->
+                        <br>
+                        <p class="akun">Belum memiliki akun?</p>
+                        <a class="regis" href="register.html">Daftar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</main>
+
+<div class="footer-column">
+    <table>
+        <tr>
+            <th>Contact Us</th>
+            <th>Tentang Kami</th>
+            <th>Layanan Kami</th>
+        </tr>
+        <tr>
+            <td>MyDicine Customer Care</td>
+            <td>Tentang Kami</td>
+            <td>Shop</td>
+        </tr>
+        <tr>
+            <td>0210898768</td>
+            <td>Kebijakan Privasi</td>
+            <td>Lokasi Kami</td>
+        </tr>
+        
+        
+        <tr>
+            <td>Email</td>
+            <td>Syarat dan Ketentuan</td>
+            <td><ion-icon name="cart"></ion-icon> <ion-icon name="location"></ion-icon></td>
+        </tr>
+        <tr>
+            <td>mydicinehealth@gmail.com</td>
+        </tr>
+    </table>
+    <div class="social-media">
+        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-icon name="logo-youtube"></ion-icon>
+        <ion-icon name="call"></ion-icon>
+        <ion-icon name="logo-whatsapp"></ion-icon>
+        <ion-icon name="mail"></ion-icon>
+    </div>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Mencegah submit langsung
+
+        let isValid = true;
+        const username = document.getElementById("Username");
+        const password = document.getElementById("password");
+
+        if (username.value.trim() === "") {
+            isValid = false;
+            username.nextElementSibling.style.display = "block"; // Tampilkan error
+        } else {
+            username.nextElementSibling.style.display = "none";
+        }
+
+        if (password.value.trim() === "") {
+            isValid = false;
+            password.nextElementSibling.style.display = "block";
+        } else {
+            password.nextElementSibling.style.display = "none";
+        }
+
+        if (!isValid) {
+            Swal.fire({
+                icon: "error",
+                title: "Error!",
+                text: "Harap isi semua field yang wajib diisi!",
+                confirmButtonColor: "#009782",
+            });
+        } else {
+            Swal.fire({
+                icon: "success",
+                title: "Berhasil Login!",
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                window.location.href = "index.html"; // Redirect ke halaman beranda
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

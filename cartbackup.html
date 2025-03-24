@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mydicine</title>
+    <link rel="stylesheet" href="asset/style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+ 
+</head>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><img src="asset/img/Logo Med.png" alt="logo" width="100" height="50"/></div>
+            <div class="menu">
+                <ul>   
+                    <li><a href="index.html"> Produk </a></li>
+                    <li><a href="cart.html">
+                        <ion-icon name="cart-outline"></ion-icon></a></li>
+                    <li><button a href="contact.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+
+    <main>
+    <div class="container-cart">
+        <h1 align="center">Check Out</h1>
+        <div class="box-cart">
+            <p class="judul-boxcart">Lokasi Pengiriman</p>
+            <hr witdh="100%" size="1" align="center" color="grey">
+            <p class="subjudul-boxcart ">Yogyakarta</p>
+            <p class="isi-boxcart">Gedung TILC, Blimbing Sari, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</p>
+        </div>
+    </div>
+
+
+    <!-- <div class="box-cart">
+        <p class="judul-boxcart">Detail Pesanan</p>
+        <hr witdh="100%" size="1" align="center" color="#bebebe">
+        <div class="cart-content">
+            <div class="square-cart">
+                <img src="asset/img/detailsangobion.png" width="15%"/>
+                <div class="detail-cart">
+                    <p class="title-product">Sangobion (10 Capsul)</p>
+                    <span class="price-product">Rp 21.600</span>
+                    <div class="cart-quantity">
+                        <button id="decrement">-</button>
+                        <span class="number">1</span>
+                        <button id="increment">+</button>
+                    </div>
+                </div>
+                <ion-icon name="trash-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+    </div> -->
+    
+
+    <div class="box-cart">
+        <p class="judul-boxcart">Detail Pesanan</p>
+        <hr witdh="100%" size="1" align="center" color="#bebebe">
+        <br>
+        <img src="asset/img/detailsangobion.png" width="15%"/>
+        <div class="text-detailcart">
+            <p class="judul" >Sangobion (10 Capsul)</p>
+            <p class="deskripsi">1 Strip</p>
+            <p class="harga">Rp 21.600</p> 
+            <br>
+        </div>
+        
+        <img src="asset/img/detailfeminax.png" width="15%"/>
+        <div class="text-detailcart">
+            <p class="judul">Feminax (4 Tablet)</p>
+            <p class="deskripsi"> 2 Strip</p>
+            <p class="harga">Rp 7.600</p> 
+            <br>
+        </div>
+
+        <img src="asset/img/detailpanodol.png" width="15%"/>
+        <div class="text-detailcart">
+            <p class="judul">Panadol (10 Tablet)</p>
+            <p class="deskripsi">1 Strip</p>
+            <p class="harga">Rp 13.700</p> 
+            <br>
+        </div> 
+    </div>
+
+    <div class="container-cart">
+        <div class="box-cart">
+            <p class="judul-boxcart">Detail Pembayaran</p>
+            <hr witdh="100%" size="1" align="center" color="#bebebe">
+            <table class="tabel-pembayaran">
+                <tr>
+                    <td>Subtotal</td>
+                    <td class="subtotal">Rp 42.900</td>
+                </tr>
+                <tr>
+                    <td>Diskon</td>
+                    <td class="subtotal"></td>
+                </tr>
+            </table>  
+            <hr witdh="100%" size="1" align="center" color="#bebebe">
+            <table class="tabel-pembayaran">
+                <tr>
+                    <td>Total Pembayaran</td>
+                    <td class="subtotal">Rp 42.900</td>
+                </tr>
+            </table>
+            <button style="margin-left: 20%; width: 600px; margin-top: 10px;">
+                Bayar
+            </button>
+        </div>
+    </div>
+
+
+    
+    <script>
+        function showCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartList = document.getElementById("cart-list");
+    
+            cartList.innerHTML = ""; // Kosongkan daftar sebelum menampilkan ulang
+    
+            if (cart.length === 0) {
+                cartList.innerHTML = "<p>Keranjang kosong.</p>";
+                return;
+            }
+    
+            cart.forEach((item, index) => {
+                cartList.innerHTML += `
+                    <div class="cart-item">
+                        <img src="asset/img/detailsanmol.png" width="50" />
+                        <span>${item.name} (${item.quantity}x)</span>
+                        <span>Rp ${item.price * item.quantity}</span>
+                        <button onclick="removeFromCart(${index})">Hapus</button>
+                    </div>
+                `;
+            });
+        }
+    
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1); // Hapus item berdasarkan indeks
+            localStorage.setItem("cart", JSON.stringify(cart));
+            showCart(); // Refresh tampilan keranjang setelah penghapusan
+        }
+    
+        // Panggil saat halaman dimuat
+        window.onload = showCart;
+    </script>
+    
+    <script>
+        let cart = []; // Variabel global untuk menyimpan data keranjang
+
+        function addToCart(name, price) {
+            let found = cart.find(item => item.name === name);
+            if (found) {
+                found.quantity += 1; // Jika produk sudah ada, tambah jumlahnya
+            } else {
+                cart.push({ name, price, quantity: 1 }); // Jika belum ada, tambahkan produk baru
+            }
+
+            displayCart(); // Perbarui tampilan keranjang
+        }
+
+        function displayCart() {
+            let cartContainer = document.getElementById("cart-items");
+            cartContainer.innerHTML = ""; // Kosongkan tabel sebelum mengisi ulang
+
+            cart.forEach((item, index) => {
+                cartContainer.innerHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${item.name}</td>
+                        <td>Rp ${item.price.toLocaleString()}</td>
+                        <td>${item.quantity}</td>
+                    </tr>
+                `;
+            });
+        }
+    </script>
+    
+    
+
+</body>
+</html>
+

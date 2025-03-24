@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+main {
+    flex: 1;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Poppins', serif;
+    min-height: 100vh;
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+}
+
+
+.wrapper {
+    width: 1100px;
+    height: 80px;
+    margin: auto;
+    position: center;
+    padding: 0px;
+}
+
+.beranda {
+    display: flex;
+    gap: 10px;
+    max-width: 1000px;
+    margin: auto;
+    padding-top: 10px;
+}
+
+.logo img {
+    font-size: 20px;
+    font-weight: 800;
+    float: left;
+    font-family: 'Poppins', serif;
+    color: #133E87;
+    padding-top: 1.2%;
+}
+
+.menu {
+    float: right;
+}
+
+nav {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    line-height: 80px;
+    position: sticky;
+    position:-webkit-sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+    border-bottom: 1px solid #133E87;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: left;
+    margin-right: 3px;
+}
+
+nav ul li a {
+    color: black;
+    font-weight: 600;
+    text-align: center;
+    padding: 0px 0px 0px 16px;
+    text-decoration: none;
+    color: #009782;
+}
+
+nav ul li button {
+    margin-left: 25px;
+}
+
+nav ul li a:hover {
+    color: #133E87;
+}
+
+section {
+    margin: auto;
+    display: flex;
+    margin-bottom: 50px;
+    margin-left: 90px;
+}
+
+.kolom {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    flex: 1;
+    text-align: justify;
+}
+
+.kolom .deskripsi {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Poppins', serif;
+    color: #133E87;
+}
+
+h1 {
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-style: normal;
+    margin-bottom: 10px;
+    color: #009782;
+    width: 100%;
+    line-height: 100px; 
+}
+
+h3 {
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-style: normal;
+    margin-bottom: 10px;
+    color: black;
+    width: 100%;
+}
+
+/*FOOTER*/
+
+.footer-column {
+    background-color: #009782;
+    font-display: white;
+    color: white;
+    font-size: 15px;
+    text-align: left;
+    width: 1112.5px;
+    padding: 70px;
+    bottom: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/*BERANDA*/
+
+.box-obat {
+    width: 180px;
+    height: 275px;
+    background-color: white;
+    border-radius: 13px;    
+    font-size: 11p;
+    p.merk{font-size: 17px; font-weight: 600; color: #133E87;}
+    p.jenis{font-size: 10px; font-weight: 300; color: #a9acb2; line-height: 2;}
+    p.harga{font-size: 15px; font-weight: 600; color: #009782;}
+    color: black;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    float: left;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
+    4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.box-obat:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 15px rgba(8, 115, 61, 0.5);
+}
+
+.container-obat {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 1px; 
+    flex-wrap: wrap; 
+    margin-top: 1;  
+}
+
+.container-detail {
+    justify-content: center;
+}
+
+.text-detail {
+    margin-top: 10px;
+    background-color: #ffffff;
+    width: 70%;
+    float: right;
+    p.judul{font-size: 23px; font-weight: bold;}
+    p.harga{font-size: 34px; font-weight: bold; color: #009782; line-height: 2;}
+    p.deskripsi{font-size: 17px; font-weight: bold;}
+    p.desc{font-size: 15px; font-weight: 400; text-align: justify;}
+    text-align: left;
+    margin-right: 50px;
+}
+
+.box-detail {
+    float: left;
+    width: 20%;
+    height: auto;
+    border-radius: 13px;
+    padding: 5px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.text-detail .add-chart {
+    padding: 5px 20px;
+    line-height: 2;
+    background-color: #009782;
+    color: white;
+    font-family: "Poppins", serif;
+    font-size: 14px;
+    border: 1px solid #009782;
+    border-radius: 13px;
+    cursor: pointer;
+    margin-left: 1px;
+}
+
+.text-detail .add-chart:hover {
+    background-color: #133E87
+}
+
+
+/*LOGIN dan REGISTER*/
+
+.button-login {
+    padding: 5px 20px;
+    line-height: 2.5;
+    background-color: #009782;
+    color: white;
+    font-family: "Poppins", serif;
+    font-size: 13px;
+    border: 1px solid #009782;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 330px;
+}
+
+.button-regis {
+    padding: 5px 20px;
+    line-height: 2;
+    background-color: #009782;
+    color: white;
+    font-family: "Poppins", serif;
+    font-size: 13px;
+    border: 1px solid #009782;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 330px;
+}
+
+.button-login a:hover {
+    background-color: #133E87;
+    color: white;
+}
+
+.kontak {
+    padding: 1px 20px 20px 20px;
+    margin: 10px 20px 20px 20px; 
+    justify-content: center; 
+    align-items: center;   
+}
+
+
+.container-contact {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 2px; 
+    flex-wrap: wrap; 
+    margin-top: 10px; 
+}
+
+.box-contact {
+    width: 480px;
+    height: 500px;
+    background-color: white;
+    border-color: #133E87;
+    border-radius: 15px;
+    color: black;
+    text-align: center;
+    padding: 1px 20px 20px 20px;
+    margin: 0px 20px 20px 20px;
+    float: left;
+}
+
+.isikontak form {
+    width: 400px;
+    text-align: center;
+}
+
+.isikontak {
+    p.akun{font-size: 13px; font-weight: 300; margin-left: 10px; color: #98a1a1; margin-top: 10px;}
+    a.regis{font-size: 13px; font-weight: 600; margin-left: 10px; color: #009782;}
+}
+
+
+.input-box .input-field {
+    width: 48,5%;
+    position: center;
+}
+
+.field .item {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #133E87;
+    outline: none;
+    border-radius: 5px;
+    font-family: "Poppins", serif;
+    font-size: 12px;
+    color: black;
+    margin: 12px 0;
+}
+
+.field .item:placeholder {
+    color:darkgrey;
+}
+
+form .textarea-field .item {
+    resize: none;
+    position: center;
+    margin-left: 40px;
+    width: 360px;
+}
+
+button {
+    padding: 5px 20px;
+    line-height: 2;
+    background-color: #009782;
+    color: white;
+    font-family: "Poppins", serif;
+    font-size: 12px;
+    border: 1px solid #009782;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+button:hover {
+    background-color: #133E87;
+    color: white;
+}
+
+.field .error-txt {
+    font-family: "Poppins", serif;
+    font-size: 11px;
+    text-align: left;
+    color: red;
+    margin: -5px 0 10px;
+    display: none;
+}
+
+form .textarea-field .error-txt {
+    margin-top: -10px;
+}
+
+a ion-icon {
+    font-size: 30px;  /* Ubah ukuran ikon */
+    gap: 30px;
+    color: #98a1a1;   /* Warna ikon */
+    margin-top: 20px;
+    padding-top: 5px;
+    margin-right: -5px;
+}
+
+a ion-icon:hover {
+    color: #133E87;
+}
+
+/*CART*/
+.container-cart {
+    justify-content: center; 
+    align-items: center; 
+    gap: 1px; 
+    flex: content; 
+    margin-top: 1; 
+}
+
+.box-cart {
+    width: 80%;
+    height: auto;
+    border-radius: 13px;
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-bottom: 15px;
+    text-align: justify;
+    margin-left: 110px;
+    margin-bottom: 25px;
+    p.judul-boxcart{font-size: 17px; font-weight: bold; line-height: 2; color: #009782}
+    p.subjudul-boxcart{font: 13px; font-weight: 400; color: rgb(91, 81, 81); line-height: 2}
+    p.isi-boxcart{font-size: 12px; color: grey;}
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
+    4px 4px 10px rgba(0, 0, 0, 0.1);
+    th.ckout-obat{font-size: 12px; color: grey;}
+}
+
+.box-cart hr {
+    color: grey;
+}
+.text-detailcart {
+    margin-top: 10px;
+    background-color: #ffffff;
+    width: 70%;
+    float: right;
+    p.judul{font-size: 16px; line-height: 2; margin-right: 50px;}
+    p.harga{font-size: 16px; font-weight: bold; color: #009782; line-height: 2; text-align: right}
+    p.deskripsi{font-size: 12px; color:#98a1a1}
+    text-align: left;
+}
+
+.tabel-pembayaran {
+    width: 100%;
+}
+
+table.tabel-pembayaran {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse; /*jarak antar kotak*/
+    font-size: 14px;
+    text-align: center;
+    padding: 12px 16px;
+    border-color: #009782;
+}
+
+table.tabel-pembayaran thead {
+    background-color: #009782;
+    color: white;
+    padding: 12px 16px;
+}
+
+table.tabel-pembayaran tbody tr:nth-child(even) {
+    background-color: hwb(180 91% 0%);
+    padding: x 16px;
+}
+
+table.tabel-pembayaran tbody tr:hover {
+    background-color: #bbf4ee;
+
+}
+
+table.tabel-pembayaran td[colspan="5"] {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+}
+
+.tabel-pembayaran th, .tabel-pembayaran td {
+    padding: 15px 20px !important;
+}
+
+.detail-cart {
+    display: grid;
+    gap: 8px;
+    p.title-product{font-size: 16px; line-height: 2; text-align: center;}
+}
+
+.price-product {
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #009782; 
+    line-height: 2; 
+    text-align: right;
+}
+
+h2 {
+    text-align: center;
+    color: #009782;
+}
+
+h3 {
+    color: #009782;
+    text-align: center  ;
+}
+
+
+/* input number */
+input[type="number"] {
+    width: 40px; /* Lebar input */
+    height: 20px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: center; /* Teks rata tengah */
+    border: 1px solid #009782;
+    border-radius: 3px;
+    outline: none;
+    margin: 0;
+}
+
+/* efek saat input di klik */
+input[type="number"]:focus {
+    border-color: #009782;
+}
+
+
+
+

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mydicine</title>
+    <link rel="stylesheet" href="asset/style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><img src="asset/img/Logo Med.png" alt="logo" width="100" height="50"/></div>
+            <div class="menu">
+                <ul>   
+                    <li><a href="index.html"> Produk </a></li>
+                    <li><a href="cart.html">
+                        <ion-icon name="cart-outline"></ion-icon></a></li>
+                    <li><button onclick="window.location.href='login.html'">Login</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+
+        <h2>Keranjang Belanja</h2>
+        
+        <table border="1" class="tabel-pembayaran">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Subtotal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <h3> <span id="total-price">0</span></h3>
+    
+        <button onclick="checkout()" style="margin-bottom: 15px; width: 20%; margin-left: 40%; margin-top:2%;" class="pay" id="payment" type="button-payment">Bayar</button>
+        <button onclick="clearCart()" style="margin-bottom: 15px; width: 20%; margin-left: 40%;" class="refresh" id="ref-cart" type="button-resfresh">Refresh Pesanan</button>
+    
+        <br>
+<br>
+<br>
+<div class="footer-column">
+    <table>
+        <tr>
+            <th>Contact Us</th>
+            <th>Tentang Kami</th>
+            <th>Layanan Kami</th>
+        </tr>
+        <tr>
+            <td>MyDicine Customer Care</td>
+            <td>Tentang Kami</td>
+            <td>Shop</td>
+        </tr>
+        <tr>
+            <td>0210898768</td>
+            <td>Kebijakan Privasi</td>
+            <td>Lokasi Kami</td>
+        </tr>
+        
+        
+        <tr>
+            <td>Email</td>
+            <td>Syarat dan Ketentuan</td>
+            <td><ion-icon name="cart"></ion-icon> <ion-icon name="location"></ion-icon></td>
+        </tr>
+        <tr>
+            <td>mydicinehealth@gmail.com</td>
+        </tr>
+    </table>
+
+    <div class="social-media">
+        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-icon name="logo-youtube"></ion-icon>
+        <ion-icon name="call"></ion-icon>
+        <ion-icon name="logo-whatsapp"></ion-icon>
+        <ion-icon name="mail"></ion-icon>
+    </div>
+
+        <script>
+            let cart = JSON.parse(sessionStorage.getItem("cart")) ||[]; // Variabel global untuk menyimpan data keranjang
+
+            function addToCart(name, price, quantity) {
+                let found = cart.find(item => item.name === name);
+                if (found) {
+                    found.quantity += 1; // Jika produk sudah ada, tambah jumlahnya
+                } else {
+                    cart.push({ name, price, quantity: 1}); // Jika belum ada, tambahkan produk baru
+                }
+                sessionStorage.setItem("cart", JSON.stringify(cart));  // Simpan ke sessionStorage
+                displayCart(); // Perbarui tampilan keranjang
+            }
+
+            function displayCart() { 
+                let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+                console.log(sessionStorage.getItem("cart")); // Cek apakah data terbaca
+                let cartList = document.getElementById("cart-items");
+                let totalPriceList = document.getElementById("total-price");
+    
+                cartList.innerHTML = ""; // Kosongkan isi sebelum diisi ulang
+    
+                let totalPrice = 0;
+    
+                if (cart.length === 0) { 
+                    cartContainer.innerHTML = "<tr><td colspan='5'>Keranjang masih kosong</td></tr>";
+                    totalPriceList.innerText = "Total: Rp 0";
+                     return;
+                } 
+                cart.forEach((item, index) => {
+                        let subtotal = item.price * item.quantity;
+                        totalPrice += subtotal;
+    
+                        cartList.innerHTML += `
+                        <table>
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${item.name}</td>
+                                <td>Rp ${item.price.toLocaleString()}</td>
+                                <td>${item.quantity}</td>
+                                <td>Rp ${subtotal.toLocaleString()}</td>
+                                <td><button onclick="removeFromCart(${index})">Hapus</button></td>
+                            </tr>
+                        </table>
+                        `;
+                    });
+                
+                 totalPriceList.innerText = `Total: Rp ${totalPrice.toLocaleString()}`;
+                     
+                }
+                document.addEventListener("DOMContentLoaded", displayCart);
+                
+            </script>
+            <script>
+            function showCart() {
+                let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+                let cartList = document.getElementById("cart-items");
+                let totalPriceList = document.getElementById("total-price");
+
+
+                cartList.innerHTML = ""; // Kosongkan daftar sebelum menampilkan ulang
+
+                if (cart.length === 0) {
+                    cartList.innerHTML = "<p>Keranjang kosong.</p>";
+                    totalPriceList.innerText = "Total: Rp 0";
+                    return;
+                }
+
+                cart.forEach((item, index) => {
+                    cartList.innerHTML += `
+                        <div>
+                            <span><td>${index + 1}</td><span>
+                            <span><td>${item.name}</td></span>
+                            <span><td>Rp ${item.price}</td></span>
+                            <span><td>${item.quantity}</td><span>
+                            <span><td>Rp ${item.price * item.quantity}</td></span>
+                            <td><button onclick="removeFromCart(${index})" style="height: 32px; margin-top:2%; margin-left:1%">Hapus</button></td>
+                        </div>
+                    `;  
+                });
+               
+            }
+
+            function clearCart() {
+                sessionStorage.removeItem("cart"); // Hapus data dari sessionStorage
+                showCart(); // Perbarui tampilan keranjang
+            }
+            function removeFromCart(index) {
+                let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+                cart.splice(index, 1); // Hapus item berdasarkan indeks
+                sessionStorage.setItem("cart", JSON.stringify(cart));
+                showCart(); // Refresh tampilan keranjang setelah penghapusan
+            }
+
+            // Fungsi untuk tombol "Bayar"
+                
+            function checkout() {
+            let transactionNumber = "781082328814240"; // Nomor transaksi
+
+            // Buat URL QR Code dari API generator QRIS
+            let qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${transactionNumber}`;
+
+            Swal.fire({
+                title: "Scan QR untuk Pembayaran",
+                html: `
+                    <p>Gunakan aplikasi e-wallet atau mobile banking untuk memindai QR ini.</p>
+                    <img src="${qrCodeUrl}" width="250" height="250" alt="QR Code">
+                    <p><strong>Nomor Transaksi:</strong> ${transactionNumber}</p>
+                `,
+                showCancelButton: true,
+                cancelButtonText: "Tutup",
+                confirmButtonText: "Selesai",
+                confirmButtonColor: "#009782",
+            });
+        }
+
+                // Fungsi untuk tombol "Refresh Pesanan"
+                function clearCart() {
+                    Swal.fire({
+                        title: "Konfirmasi",
+                        text: "Apakah Anda yakin ingin menghapus semua pesanan?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#009782",
+                        confirmButtonText: "Ya, hapus!",
+                        cancelButtonText: "Batal"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            // Kosongkan keranjang di sessionStorage
+                            sessionStorage.removeItem("cart");
+
+                            Swal.fire(
+                                "Dihapus!",
+                                "Keranjang anda telah dikosongkan",
+                                "success",
+                            ).then(() => {
+                                // Refresh halaman setelah konfirmasi
+                                location.reload();
+                            });
+                        }
+                    });
+                }
+
+            
+            // Panggil saat halaman dimuat
+            window.onload = showCart;
+        </script>
+
+
+</body>
+</html>
+
